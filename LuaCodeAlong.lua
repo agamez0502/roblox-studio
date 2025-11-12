@@ -12,17 +12,17 @@ local groupTiles = DiscoFloorModel:getChildren()
 -- check if all tiles are being touched 
 -- if player touches red tile, then back to spawn
 
-local function DiscoTiles(touch)
+for i=1, #groupTiles do
 
-    local playerTouched = game.Players:GetPlayerFromCharacter(touch.Parent)
+    groupTiles[i].Touched:Connect(function(touch)
+
+        local playerTouched = game.Players:GetPlayerFromCharacter(touch.Parent)
     if playerTouched then
         print(playerTouched.Name .. " touched the part!")
-        if touch.Name == "PartBlue" then 
+        if groupTiles[i].Name == "PartBlue" then
             print("something")
         end
     end
-end
+end)
 
-for i=1, #groupTiles do
-    groupTiles[i].Touched:Connect(DiscoTiles)
 end
